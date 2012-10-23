@@ -41,6 +41,21 @@ dense * read_dense () {
   return A;
 }
 
+dense * copy_dense (dense *A) {
+  int i, k;
+  dense *B;
+
+  B = (dense *) malloc (sizeof(dense));
+  B->nrow = A->nrow;
+  B->ncol = A->ncol;
+  k = B->nrow * B->ncol;
+  B->x = (double *) malloc (sizeof(double) * k);
+  for (i = 0; i < k; i++)
+    B->x[i] = A->x[i];
+
+  return B;
+}
+
 void print_dense (dense * A, char * name) {
   int i, j;
   printf("%s = \n", name);
